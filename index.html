@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <title>Screamer</title>
+  <style>
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: url('background.webp') center center no-repeat;
+  background-size: contain;  /* Keeps the image's aspect ratio */
+  background-color: black;
+  height: 100vh; /* Ensure the body covers the full viewport height */
+}
+
+
+#startBtn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  font-family: 'Press Start 2P', monospace;
+  font-size: 20px;
+  color: #fff;
+  background-color: #1d1d1d;
+  border: 4px solid #fff;
+  padding: 20px 40px;
+  cursor: pointer;
+  z-index: 10;
+
+  box-shadow: 4px 4px 0px #ff0000;
+  text-shadow: 2px 2px #000;
+
+  image-rendering: pixelated;
+  user-select: none;
+}
+
+#startBtn:hover {
+  background-color: #333;
+  color: #ff0066;
+  border-color: #ff0066;
+}
+
+    video {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      display: none;
+    }
+  </style>
+  
+</head>
+<body>
+  <button id="startBtn">CLICK TO START</button>
+  <video id="screamer" src="video1.mp4"></video>
+
+  <script>
+    const btn = document.getElementById('startBtn');
+    const vid = document.getElementById('screamer');
+
+    btn.addEventListener('click', async () => {
+      btn.remove();
+      vid.style.display = 'block';
+      await vid.play();
+      if (document.fullscreenEnabled) {
+        document.documentElement.requestFullscreen();
+      }
+    });
+  </script>
+</body>
+</html>
